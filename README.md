@@ -1,0 +1,2 @@
+# jhs-eiken-wordle
+
