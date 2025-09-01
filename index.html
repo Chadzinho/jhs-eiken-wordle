@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wordle</title>
+        <link rel="stylesheet" href="./css/styles.css" />
+        <link rel="stylesheet" href="./css/home.css" />
+        <link rel="stylesheet" href="./css/game.css" />
+    </head>
+    <body>
+        <div id="app">
+            <!-- Home Screen -->
+            <div class="screen hidden" id="home-screen">
+                <div class="container">
+                    <header>
+                        <h1>JHS Wordle</h1>
+                        <p>Choose your level to start playing!</p>
+                    </header>
+
+                    <main class="level-selection">
+                        <section class="level-category">
+                            <h2>Junior High School</h2>
+                            <div class="level-buttons">
+                                <button class="btn level-btn" data-level="jhs1">
+                                    1st Year
+                                </button>
+                                <button class="btn level-btn" data-level="jhs2">
+                                    2nd Year
+                                </button>
+                                <button class="btn level-btn" data-level="jhs3">
+                                    3rd Year
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="level-category">
+                            <h2>Eiken Levels</h2>
+                            <div class="level-buttons">
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken5"
+                                >
+                                    5
+                                </button>
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken4"
+                                >
+                                    4
+                                </button>
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken3"
+                                >
+                                    3
+                                </button>
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken-pre2"
+                                >
+                                    Pre-2
+                                </button>
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken2"
+                                >
+                                    2
+                                </button>
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken-pre1"
+                                >
+                                    Pre-1
+                                </button>
+                                <button
+                                    class="btn level-btn"
+                                    data-level="eiken1"
+                                >
+                                    1
+                                </button>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+
+            <!-- Game Screen -->
+            <div class="screen active" id="game-screen">
+                <div class="container">
+                    <nav class="game-nav">
+                        <div class="nav-left">
+                            <button class="nav-btn" id="home-btn">
+                                <span>← Home</span>
+                            </button>
+                        </div>
+                        <div class="nav-center">
+                            <h1>JHS Wordle</h1>
+                        </div>
+                        <div class="nav-right">
+                            <button class="nav-btn" id="hint-btn">
+                                <span>Hint</span>
+                            </button>
+                            <button class="nav-btn" id="new-btn">
+                                <span>New Game</span>
+                            </button>
+                            <button class="nav-btn" id="howto-btn">
+                                <span>How To Play</span>
+                            </button>
+                            <button class="nav-btn" id="settings-btn">
+                                <span>Settings</span>
+                            </button>
+                        </div>
+                    </nav>
+
+                    <main class="game-main">
+                        <div class="instructions-sidebar hidden">
+                            <div class="sidebar-header">
+                                <h3>How to Play</h3>
+                                <button
+                                    class="close-btn"
+                                    id="close-instructions"
+                                >
+                                    X
+                                </button>
+                            </div>
+                            <div class="sidebar-content hidden">
+                                <div class="instructions-section">
+                                    <h4>Objective</h4>
+                                    <p>
+                                        Guess the 5-letter word in 6 tries or
+                                        fewer!
+                                    </p>
+                                </div>
+
+                                <div class="instructions-section">
+                                    <h4>Color Guide</h4>
+                                    <div class="color-example">
+                                        <div class="example-tile correct">
+                                            A
+                                        </div>
+                                        <span
+                                            >Green = Correct letter, correct
+                                            position
+                                        </span>
+                                    </div>
+                                    <div class="color-example">
+                                        <div class="example-tile present">
+                                            P
+                                        </div>
+                                        <span
+                                            >Yellow = Correct letter, wrong
+                                            position
+                                        </span>
+                                    </div>
+                                    <div class="color-example">
+                                        <div class="example-tile absent">Z</div>
+                                        <span
+                                            >Gray = This letter is NOT in the
+                                            word.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="instructions-section">
+                                    <h4>How to Play</h4>
+                                    <ul>
+                                        <li>
+                                            Type letters using your keyboard or
+                                            the screen.
+                                        </li>
+                                        <li>
+                                            Press ENTER to submit your guess.
+                                        </li>
+                                        <li>
+                                            Press BACKSPACE to delete the last
+                                            letter.
+                                        </li>
+                                        <li>
+                                            Each guess must be a valid 5-letter
+                                            word.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="game-board-area">
+                            <div class="board" id="game-board">
+                                <div class="board-row">
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                </div>
+                                <div class="board-row">
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                </div>
+                                <div class="board-row">
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                </div>
+                                <div class="board-row">
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                </div>
+                                <div class="board-row">
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                </div>
+                                <div class="board-row">
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                    <div class="tile"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dictionary-sidebar">
+                            <h3>Your guesses</h3>
+                            <div class="guess-history" id="guess-list">
+                                <!-- Guesses will be later populated by JavaScript -->
+                                <div class="guess-item template hidden">
+                                    <span class="guess-word"></span>
+                                    <span class="guess-definition"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    <div class="keyboard-container">
+                        <div class="keyboard">
+                            <div class="keyboard-row">
+                                <button class="key" data-key="Q">Q</button>
+                                <button class="key" data-key="W">W</button>
+                                <button class="key" data-key="E">E</button>
+                                <button class="key" data-key="R">R</button>
+                                <button class="key" data-key="T">T</button>
+                                <button class="key" data-key="Y">Y</button>
+                                <button class="key" data-key="U">U</button>
+                                <button class="key" data-key="I">I</button>
+                                <button class="key" data-key="O">O</button>
+                                <button class="key" data-key="P">P</button>
+                            </div>
+                            <div class="keyboard-row">
+                                <button class="key" data-key="A">A</button>
+                                <button class="key" data-key="S">S</button>
+                                <button class="key" data-key="D">D</button>
+                                <button class="key" data-key="F">F</button>
+                                <button class="key" data-key="G">G</button>
+                                <button class="key" data-key="H">H</button>
+                                <button class="key" data-key="J">J</button>
+                                <button class="key" data-key="K">K</button>
+                                <button class="key" data-key="L">L</button>
+                            </div>
+                            <div class="keyboard-row">
+                                <button class="key key-large" data-key="Enter">
+                                    ENTER
+                                </button>
+                                <button class="key" data-key="Z">Z</button>
+                                <button class="key" data-key="X">X</button>
+                                <button class="key" data-key="C">C</button>
+                                <button class="key" data-key="V">V</button>
+                                <button class="key" data-key="B">B</button>
+                                <button class="key" data-key="N">N</button>
+                                <button class="key" data-key="M">M</button>
+                                <button
+                                    class="key key-large"
+                                    data-key="Backspace"
+                                >
+                                    ⌫
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Win/Loss Modals -->
+        <div class="modal hidden" id="win-modal">
+            <div class="modal-content">
+                <h2>You Won!</h2>
+                <div class="result-word">
+                    <span id="win-word"></span>
+                    <span id="win-definition"></span>
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary" id="win-home-btn">
+                        Home
+                    </button>
+                    <button class="btn btn-primary" id="win-newgame-btn">
+                        New Game
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal hidden" id="loss-modal">
+            <div class="modal-content">
+                <h2>Game Over!</h2>
+                <div class="result-word">
+                    <span id="win-word"></span>
+                    <span id="win-definition"></span>
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn btn-secondary" id="win-home-btn">
+                        Home
+                    </button>
+                    <button class="btn btn-primary" id="win-newgame-btn">
+                        New Game
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/app.js"></script>
+        <script src="./js/utils.js"></script>
+        <script src="./js/game.js"></script>
+        <script src="./js/keyboard.js"></script>
+        <script src="./js/wordlist.js"></script>
+    </body>
+</html>
